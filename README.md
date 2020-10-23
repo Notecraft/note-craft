@@ -1,14 +1,13 @@
-# note-generation
+# Notecraft 
 
 The point of this project is to help with coming up with random patterns and melodies.
-I am one of many guitarists that develop muscle memory for certain patterns when playing.
-Hopefully with some random melodies that can be alleviated somewhat!
+Avoid lame musical scores with our patent pending futuristic technology!
 
 # Setup
 
 ```
- npm install
- run the `dev` and `ui` scripts from `package.json`
+ npm i
+ npm run start 
 ```
 
 # Where does this live?
