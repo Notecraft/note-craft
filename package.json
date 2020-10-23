@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "npm run build && node ./dist/server/app.js",
+    "start": "set PORT=8000 && npm run build && node ./dist/server/app.js",
     "dev": "nodemon ./src/server/app.js",
     "build": "rollup --config",
     "test": "jest"
