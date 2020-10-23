@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "../client/public")));
 
 setup(app);
 
-const port = 8000;
+const port = process.env.PORT;
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 module.exports = app;

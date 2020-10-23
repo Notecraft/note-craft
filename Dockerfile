@@ -1,5 +1,7 @@
 FROM node:14
 WORKDIR /usr/src/app
-COPY ./dist
-EXPOSE 8000
+COPY package.json ./
+RUN npm install
+COPY ./dist ./dist
+EXPOSE $PORT
 CMD ["node", "./dist/server/app.js"]
