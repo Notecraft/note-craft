@@ -1,4 +1,4 @@
-# Notecraft 
+# Notecraft
 
 The point of this project is to help with coming up with random patterns and melodies.
 Avoid lame musical scores with our patent pending futuristic technology!
@@ -7,13 +7,13 @@ Avoid lame musical scores with our patent pending futuristic technology!
 
 ```
  npm i
- npm run start 
+ npm run start
 ```
 
 # Where does this live?
 
-https://note-generation.herokuapp.com/
+https://notecraft.herokuapp.com/
 
 # What's coming next?
 
-https://github.com/goatonabicycle/note-generation/projects/1
+https://github.com/goatonabicycle/note-craft/projects/1
