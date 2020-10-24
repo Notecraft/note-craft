@@ -25,8 +25,8 @@ let currentItem = 0;
 let setState = jest.fn();
 const soundPlayer = new SoundPlayer(toneMock, mainMelody, tempo, setState);
 
-test('should loop through notes and play them', () => {
-    soundPlayer.loopThroughNotes();
+test('should play the next note', () => {
+    soundPlayer.playNextNote();
 
     expect(setState).toHaveBeenCalledTimes(1);
     expect(setState).toHaveBeenCalledWith("currentItem", currentItem);
