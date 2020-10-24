@@ -3,7 +3,7 @@ import localResolve from "rollup-plugin-local-resolve";
 import copy from 'rollup-plugin-copy';
 
 const config = [{
-    input: 'src/client/public/js/app.js',
+    input: 'src/client/public/js/index.js',
     output: {
         dir: 'dist/client/public/js',
         format: 'iife'
