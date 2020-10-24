@@ -1,33 +1,39 @@
 doctype html
-html(lang='en')
-  head    
-    script(async src="https://www.googletagmanager.com/gtag/js?id=UA-177268419-1")
+html(lang="en")
+  head 
+    script(
+      async,
+      src="https://www.googletagmanager.com/gtag/js?id=UA-177268419-1"
+    )
     script.
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'UA-177268419-1');  
 
-    meta(charset='utf-8')
+    meta(charset="utf-8")
     title Notecraft
-    meta(name='description' content='')
-    meta(name='author' content='Rowan')    
-    meta(name='viewport' content='width=device-width, initial-scale=1')   
-    link(rel='stylesheet' href='css/normalize.css')
-    link(rel='stylesheet' href='css/skeleton.css')    
-    link(rel='stylesheet' href='css/app.css')        
-    link(rel='stylesheet' href='css/index.css') 
-    link(href="https://fonts.googleapis.com/css2?family=Montserrat&family=Staatliches&display=swap" rel="stylesheet")
-    link(rel='icon' type='image/png' href='images/favicon.png')
-    script(src="https://unpkg.com/tone")       
+    meta(name="description", content="")
+    meta(name="author", content="Rowan") 
+    meta(name="viewport", content="width=device-width, initial-scale=1") 
+    link(rel="stylesheet", href="css/normalize.css")
+    link(rel="stylesheet", href="css/skeleton.css") 
+    link(rel="stylesheet", href="css/app.css") 
+    link(rel="stylesheet", href="css/index.css") 
+    link(
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Staatliches&display=swap",
+      rel="stylesheet"
+    )
+    link(rel="icon", type="image/png", href="images/favicon.png")
+    script(src="https://unpkg.com/tone") 
 
   body
     .background
       .logo-box
-        p(class="logo") Notecraft
-        p(class="slogan") Melodic inspiration generator.
+        p.logo Notecraft
+        p.slogan Melodic inspiration generator.
       .boundary
         .container
-            .row
-              include ./app.pug
+          .row
+            include ./app.pug
   script(src="js/index.js")

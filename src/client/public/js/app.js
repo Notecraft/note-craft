@@ -80,7 +80,7 @@ class App {
    */
   constructor(settings) {
     /*Init soundPlayer component with notes from server hydrated view */
-    this.ui.noteObjects.forEach(element => {
+    this.ui.noteObjects.forEach((element) => {
       this.state.mainMelody.push({
         note: element.innerHTML + "2",
         duration: "8n",
@@ -253,7 +253,7 @@ class App {
    * @returns function that sets URL params using given key and sender value.
    */
   setUrlQueryParam(key) {
-    return function(sender) {
+    return function (sender) {
       setUrl(key, sender.target);
     };
   }

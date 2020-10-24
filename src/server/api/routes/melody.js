@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const route = Router();
 
-const melody = app => service => {
+const melody = (app) => (service) => {
   app.use("/", route);
 
   route.get("/", (req, res) => {

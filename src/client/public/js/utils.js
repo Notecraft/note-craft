@@ -21,7 +21,7 @@ const setUrl = (parameterName, target) => {
 const createSharableUrl = (params = []) => {
   var href = new URL(window.location.href);
 
-  params.forEach(item => {
+  params.forEach((item) => {
     href.searchParams.set(item.name, item.value);
   });
 

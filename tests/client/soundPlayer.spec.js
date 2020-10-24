@@ -4,9 +4,9 @@ import { SoundPlayer } from "../../src/client/public/js/soundPlayer";
 const triggerAttackRelease = jest.fn();
 
 const toneMock = {
-  Synth: function() {
+  Synth: function () {
     return {
-      toDestination: function() {
+      toDestination: function () {
         return { triggerAttackRelease };
       },
     };
