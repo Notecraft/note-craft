@@ -12,8 +12,6 @@ import { SoundPlayer } from "./soundPlayer.js";
  * 
  * This class is the main melody player app that is on the home page, 
  * it binds to the UI and handles the soundPlayer to play strings of notes.
- * 
- * @constructs App
  */
 class App {
     /**
@@ -75,6 +73,8 @@ class App {
 
     /**
      * App constructor 
+     * 
+     * @constructs App
      * 
      * @param {*} settings A list of settings for setting the initial state of the App.
      */
