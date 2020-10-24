@@ -1,15 +1,15 @@
 /**
-* This class plays notes.
-* 
-* This class uses Tone js to play a sequence of notes at a given tempo and notify 
-* via callback what the current playing note is.
-*/
+ * This class plays notes.
+ *
+ * This class uses Tone js to play a sequence of notes at a given tempo and notify
+ * via callback what the current playing note is.
+ */
 class SoundPlayer {
   /**
-   * SoundPlayer constructor 
-   * 
+   * SoundPlayer constructor
+   *
    * @constructs SoundPlayer
-   * 
+   *
    * @param {Tone} Tone The Tone js instance.
    * @param {array} mainMelody The list of notes that will be played in sequence.
    * @param {string} tempo The tempo to play the notes at.
@@ -32,7 +32,7 @@ class SoundPlayer {
 
   /**
    * Plays the sound for the next note.
-   * 
+   *
    * @access private
    */
   playNextNote() {
@@ -54,7 +54,7 @@ class SoundPlayer {
 
   /**
    * Start playing the notes in the mainMelody at the tempo.
-   * 
+   *
    * @access public
    */
   async play() {
@@ -73,9 +73,9 @@ class SoundPlayer {
 
   /**
    * Call this to notify this component when the state of the App updates.
-   * 
+   *
    * @access public
-   * 
+   *
    * @param {*} state The new App state
    */
   stateChanged(state) {
@@ -86,11 +86,11 @@ class SoundPlayer {
 
   /**
    * Change the tempo.
-   * 
+   *
    * This method updates the tempo of the SoundPlayer and handles playing at new tempo.
-   * 
+   *
    * @acess public
-   * 
+   *
    * @param {*} tempo The new tempo to play at
    */
   updateTempo(tempo) {

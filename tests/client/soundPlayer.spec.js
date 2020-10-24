@@ -4,31 +4,31 @@ import { SoundPlayer } from "../../src/client/public/js/soundPlayer";
 const triggerAttackRelease = jest.fn();
 
 const toneMock = {
-    Synth: function () {
-        return {
-            toDestination: function () {
-                return { triggerAttackRelease }
-            },
-        };
-    }
+  Synth: function() {
+    return {
+      toDestination: function() {
+        return { triggerAttackRelease };
+      },
+    };
+  },
 };
 
 let mainMelody = [
-    {
-        note: "A2",
-        duration: "8n",
-        noteObject: undefined,
-    }
+  {
+    note: "A2",
+    duration: "8n",
+    noteObject: undefined,
+  },
 ];
 let tempo = 0;
 let currentItem = 0;
 let setState = jest.fn();
 const soundPlayer = new SoundPlayer(toneMock, mainMelody, tempo, setState);
 
-test('should play the next note', () => {
-    soundPlayer.playNextNote();
+test("should play the next note", () => {
+  soundPlayer.playNextNote();
 
-    expect(setState).toHaveBeenCalledTimes(1);
-    expect(setState).toHaveBeenCalledWith("currentItem", currentItem);
-    expect(triggerAttackRelease).toHaveBeenCalledWith("A2", "8n", undefined);
+  expect(setState).toHaveBeenCalledTimes(1);
+  expect(setState).toHaveBeenCalledWith("currentItem", currentItem);
+  expect(triggerAttackRelease).toHaveBeenCalledWith("A2", "8n", undefined);
 });

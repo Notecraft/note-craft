@@ -5,12 +5,12 @@ import errorHandler from "./middlewares/errorHandler";
 import MelodyService from "../services/melodyService";
 
 //This is where we setup Dependencies and inject them
-const setup = (app) => {
-    melody(app)(new MelodyService());
+const setup = app => {
+  melody(app)(new MelodyService());
 
-    errorHandler(app);
+  errorHandler(app);
 
-    return app;
-}
+  return app;
+};
 
 export default setup;

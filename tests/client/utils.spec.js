@@ -25,7 +25,7 @@ test("createSharableUrl - multiple parameters should build the correct url conta
 test("removeUrlParameter - removing the last parameter (mode) should leave us with only the key parameter", () => {
   const result = removeUrlParameter(
     "http://localhost/?key=a&mode=lydian",
-    "mode"
+    "mode",
   );
   expect(result).toEqual("http://localhost/?key=a");
 });
@@ -33,7 +33,7 @@ test("removeUrlParameter - removing the last parameter (mode) should leave us wi
 test("removeUrlParameter - removing the first parameter (key) should leave us with only the mode parameter", () => {
   const result = removeUrlParameter(
     "http://localhost/?key=a&mode=lydian",
-    "key"
+    "key",
   );
   expect(result).toEqual("http://localhost/?mode=lydian");
 });

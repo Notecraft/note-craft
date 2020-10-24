@@ -6,7 +6,8 @@
     "start": "set PORT=8000 && npm run build && node ./dist/server/app.js",
     "dev": "nodemon ./src/server/app.js",
     "build": "rollup --config",
-    "test": "jest"
+    "test": "jest",
+    "lint": "prettier --write **/*.js"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.12.1",
