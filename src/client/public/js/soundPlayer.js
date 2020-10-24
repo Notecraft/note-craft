@@ -1,4 +1,20 @@
+/**
+* This class plays notes.
+* 
+* This class uses Tone js to play a sequence of notes at a given tempo and notify 
+* via callback what the current playing note is.
+*/
 class SoundPlayer {
+  /**
+   * SoundPlayer constructor 
+   * 
+   * @constructs SoundPlayer
+   * 
+   * @param {Tone} Tone The Tone js instance.
+   * @param {array} mainMelody The list of notes that will be played in sequence.
+   * @param {string} tempo The tempo to play the notes at.
+   * @param {Function} setState The callback to change the App state.
+   */
   constructor(Tone, mainMelody, tempo, setState) {
     this.currentItem = 0;
     this.timer = 0;
@@ -12,10 +28,14 @@ class SoundPlayer {
         // type: "fatsawtooth",
       },
     }).toDestination();
-
   }
 
-  loopThroughNotes() {
+  /**
+   * Plays the sound for the next note.
+   * 
+   * @access private
+   */
+  playNextNote() {
     const currentNote = this.mainMelody[this.currentItem];
 
     //play the sound for this item
@@ -32,6 +52,11 @@ class SoundPlayer {
     if (this.currentItem === this.mainMelody.length) this.currentItem = 0;
   }
 
+  /**
+   * Start palaying the notes in the mainMelody at the tempo.
+   * 
+   * @access private
+   */
   async play() {
     await Tone.start();
     if (this.playing) {
@@ -39,30 +64,42 @@ class SoundPlayer {
       this.playing = false;
       return this.playing;
     }
-    this.loopThroughNotes();
+    this.playNextNote();
     const tempo = 60000 / this.tempo;
-    this.timer = setInterval(this.loopThroughNotes.bind(this), tempo); //applyToAllNotes gets executed from Window context, bind this so that we have to instance properties.
+    this.timer = setInterval(this.playNextNote.bind(this), tempo); //applyToAllNotes gets executed from Window context, bind this so that we have to instance properties.
     this.playing = true;
     return this.playing;
   }
 
+  /**
+   * Call this to notify this component when the state of the App updates.
+   * 
+   * @access public
+   * 
+   * @param {*} state The new App state
+   */
   stateChanged(state) {
     if (state.tempo) {
       this.updateTempo(state.tempo);
     }
   }
 
+  /**
+   * Change the tempo.
+   * 
+   * This method updates the tempo of the SoundPlayer and handles playing at new tempo.
+   * 
+   * @acess public
+   * 
+   * @param {*} tempo The new tempo to play at
+   */
   updateTempo(tempo) {
     this.tempo = tempo;
     if (this.playing) {
-      this.loopWithNewTempo();
+      clearInterval(this.timer);
+      const tempo = 60000 / this.tempo;
+      this.timer = setInterval(this.playNextNote.bind(this), tempo);
     }
-  }
-
-  loopWithNewTempo() {
-    clearInterval(this.timer);
-    const tempo = 60000 / this.tempo;
-    this.timer = setInterval(this.loopThroughNotes.bind(this), tempo); //loopThroughNotes gets executed from Window context, bind this so that we have to instance properties.
   }
 }
 

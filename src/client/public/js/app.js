@@ -7,13 +7,45 @@ import {
 } from "./utils.js";
 import { SoundPlayer } from "./soundPlayer.js";
 
+/**
+ * The melody player app.
+ * 
+ * This class is the main melody player app that is on the home page, 
+ * it binds to the UI and handles the soundPlayer to play strings of notes.
+ */
 class App {
+    /**
+     * The state of the app.
+     * 
+     * @access private
+     * @type {*}
+     * @property {number} currentItem The currently playing musical note index.
+     * @property {string} tempo The tempo that the melody should be playing at.
+     * @property {array} mainMelody The list of notes that make up the melody currently playing.
+     */
     state = {
         currentItem: 0,
         tempo: "240",
         mainMelody: [],
     };
 
+    /**
+     * The elements of the Html that comprise this app.
+     * 
+     * @access private
+     * @type {*}
+     * @property {element} playButton The button to start playing the melody.
+     * @property {element} shareButton The button to generate the share 
+     * @property {element} refreshButton The button to get new notes.
+     * @property {element} tempoSlide The range slider to change tempo.
+     * @property {element} tempoTextbox The adjustable text box to change tempo.
+     * @property {element} selectedNumberOfNotes The dropdown to select number of notes.
+     * @property {element} selectedEmptyNotes The dropdown to select None, Low, High of empty notes.
+     * @property {element} selectedKey The dropdown for selecting which musical key to use.
+     * @property {element} selectedScale The dropdown for selecting which musical scale to use.
+     * @property {element} currentPattern The widgets indicating the current note pattern and current note.
+     * @property {element} sharePanel The panel that pops up to display the share url.
+     */
     ui = {
         playButton: document.getElementById("play-button"),
         shareButton: document.getElementById("note-share-button"),
@@ -29,8 +61,23 @@ class App {
         sharePanel: document.getElementById("share-url"),
     };
 
+    /**
+     * The sound player instance.
+     * 
+     * Plays a given list of notes at a given tempo.
+     * @access private
+     * 
+     * @type {SoundPlayer}
+     */
     soundPlayer = undefined;
 
+    /**
+     * App constructor 
+     * 
+     * @constructs App
+     * 
+     * @param {*} settings A list of settings for setting the initial state of the App.
+     */
     constructor(settings) {
         /*Init soundPlayer component with notes from server hydrated view */
         this.ui.noteObjects.forEach((element) => {
@@ -44,6 +91,15 @@ class App {
         this.init(settings);
     }
 
+    /**
+     * Initialise app. 
+     * 
+     * This method initialises the apps state and applies event handlers to the various ui elements.
+     * 
+     * @access private
+     * 
+     * @param {*} settings A list of settings for setting the initial state of the App.
+     */
     init(settings) {
         this.setInitialState();
         this.bindUI();
@@ -51,8 +107,14 @@ class App {
 
     };
 
-    setInitialState() {
-        /* Initialise state*/
+    /**
+     * Sets the Apps initial state from settings and storage.
+     * 
+     * @access private
+     * 
+     * @param {*} settings A list of settings for setting the initial state of the App.
+     */
+    setInitialState(settings) {
         this.state.tempo = window.localStorage.getItem("tempo");
         if (settings) {
             this.state.currentItem = settings.currentItem;
@@ -60,12 +122,22 @@ class App {
         }
     };
 
+    /**
+     * Set the inital ui values
+     * 
+     * @access private
+     */
     setInitialUI() {
         /* Set initial UI values */
         this.ui.tempoSlider.value = this.state.tempo;
         this.ui.tempoTextbox.value = this.state.tempo;
     };
 
+    /**
+     * Bind event handlers to UI
+     * 
+     * @acess private
+     */
     bindUI() {
         /*Bind UI event handlers */
         this.ui.playButton.addEventListener("click", async () => {
@@ -91,6 +163,11 @@ class App {
         this.ui.selectedScale.onchange = this.setUrlQueryParam("scale").bind(this);
     }
 
+    /**
+     * Generates the URL string with query parameters for the current app state.
+     * 
+     * @access private
+     */
     generateSharableUrl() {
         function shareParameter(name, value) {
             this.name = name;
@@ -124,6 +201,13 @@ class App {
         console.log("shareableUrl", shareableUrl);
     }
 
+    /**
+     * Update the tempo state from a UI change.
+     * 
+     * @access private
+     * 
+     * @param {*} event The event from the UI.
+     */
     tempoOnChange(event) {
         let tempo;
         if (event.target.id === "tempo-range") {
@@ -138,13 +222,32 @@ class App {
         this.setState("tempo", tempo);
     };
 
+    /**
+     * Update the URL with a query parameter key.
+     * 
+     * Returns a function that is used to determine query param value from
+     * a UI sender target that this function is bound to.
+     * 
+     * @access private
+     * 
+     * @param {*} key The key for the query param.
+     * 
+     * @returns function that sets URL params using given key and sender value.
+     */
     setUrlQueryParam(key) {
         return function (sender) {
             setUrl(key, sender.target);
         }
     };
 
-
+    /**
+     * Change the value of the state of the app, causes a UI update. 
+     * 
+     * @access public 
+     * 
+     * @param {*} name The name of the state key to change.
+     * @param {*} value The new value to change the state to.
+     */
     setState(name, value) {
         const oldState = Object.assign({
         }, this.state); //Used to determine UI update
@@ -152,14 +255,28 @@ class App {
         this.stateChanged(this.state, oldState);
     };
 
+    /**
+     * Notifies various components that the state has changed and re-renders UI.
+     * 
+     * @access private
+     * 
+     * @param {*} newState The state with the new changes.
+     * @param {*} oldState The previous state with no new changes.
+     */
     stateChanged(newState, oldState) {
-        /* Update component states */
         this.soundPlayer.stateChanged(newState);
 
-        /* Update UI */
         this.render(newState, oldState);
     };
 
+    /**
+     * Update the UI elements that need updating.
+     * 
+     * @access private
+     * 
+     * @param {*} newState The state with the new changes.
+     * @param {*} oldState The previous state with no new changes.
+     */
     render(newState, oldState) {
         if (newState.currentItem !== oldState.currentItem) {
             this.ui.noteObjects[this.ui.noteObjects.length - 1].classList.remove("playing");
@@ -175,5 +292,4 @@ class App {
     };
 }
 
-//Start the App
-new App();
+export default App;
