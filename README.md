@@ -1,7 +1,7 @@
 # Notecraft
 
 The point of this project is to help with coming up with random patterns and melodies.
-Avoid lame musical scores with our patent pending futuristic technology!
+Avoid lame musical scores with our futuristic technology!
 
 # Setup
 
