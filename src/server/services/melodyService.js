@@ -1,5 +1,4 @@
-import { Scale } from "tonal";
-import { Mode } from "@tonaljs/tonal";
+import { Scale, Mode } from "@tonaljs/tonal";
 import defaultValues from "../defaultValues";
 
 class MelodyService {
@@ -20,7 +19,7 @@ class MelodyService {
     const selectedKey = key || defaultValues.key;
     const selectedScale = scale || defaultValues.scale;
     const allScales = Mode.names();
-    const baseNotes = Scale.notes(selectedKey + " " + selectedScale);
+    const baseNotes = Scale.get(selectedKey + " " + selectedScale).notes;
     const selectedNumberOfNotes = notes || defaultValues.notes;
     const allEmptyModes = ["None", "Low", "High"];
     const selectedEmptyMode = empty || defaultValues.empty;
