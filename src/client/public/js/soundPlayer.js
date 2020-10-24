@@ -53,9 +53,9 @@ class SoundPlayer {
   }
 
   /**
-   * Start palaying the notes in the mainMelody at the tempo.
+   * Start playing the notes in the mainMelody at the tempo.
    * 
-   * @access private
+   * @access public
    */
   async play() {
     await Tone.start();
