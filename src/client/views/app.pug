@@ -24,36 +24,17 @@
         each item in allEmptyModes
           option(value=item, selected=item == selectedEmptyMode) #{item}
 
-    .title-item Tempo:
-    br
-    input#tempo-text(
-      type="number",
-      onKeyUp="if(this.value>600){this.value='600';}else if(this.value<30){this.value='30';}",
-      step="10",
-      value=currentTempo
-    )
-
-    .slidecontainer
-      input#tempo-range.slider(
-        type="range",
-        min="30",
-        max="600",
-        step="1",
-        value=currentTempo
-      )
+    include ./tempo-controls.pug
 
     br
     div Randomized notes from
       i #{allNotes}
     br 
     br
-    #current-pattern.hidden #{pattern.toString()}
-    .note-container
-      each item in pattern
-        .note-item #{item}
+    include ./melody-bar.pug
     br
     div
-      button#play-button Play
+      include ./sound-player.pug
       button#refresh-button New Notes
       button#note-share-button Share
     #share-url.copy-share-url

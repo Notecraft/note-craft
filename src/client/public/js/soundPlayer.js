@@ -1,33 +1,47 @@
+import Component from "./component";
+
 /**
  * This class plays notes.
  *
  * This class uses Tone js to play a sequence of notes at a given tempo and notify
  * via callback what the current playing note is.
  */
-class SoundPlayer {
+class SoundPlayer extends Component {
   /**
    * SoundPlayer constructor
    *
    * @constructs SoundPlayer
    *
    * @param {Tone} Tone The Tone js instance.
-   * @param {array} mainMelody The list of notes that will be played in sequence.
-   * @param {string} tempo The tempo to play the notes at.
-   * @param {Function} setState The callback to change the App state.
+   * @param {*} initialState The initialState from the App
+   * @param {Function} setStateCallback The callback to change the App state.
    */
-  constructor(Tone, mainMelody, tempo, setState) {
-    this.currentItem = 0;
+  constructor(Tone, initialState, setStateCallback) {
+    super({
+      state: {
+        tempo: initialState.tempo,
+        currentItem: initialState.currentItem,
+        mainMelody: initialState.mainMelody,
+      },
+      ui: {
+        playButton: document.getElementById("play-button"),
+      },
+      setStateCallback
+    });
     this.timer = 0;
-    this.tempo = tempo;
-    this.mainMelody = mainMelody;
     this.playing = false;
-    this.setState = setState;
     this.synth = new Tone.Synth({
       oscillator: {
         count: 4,
-        // type: "fatsawtooth",
-      },
+      }
     }).toDestination();
+  }
+
+  bindUI() {
+    this.ui.playButton.addEventListener("click", async () => {
+      await this.play();
+      this.ui.playButton.innerHTML = this.playing ? "Stop" : "Play";
+    });
   }
 
   /**
@@ -36,20 +50,20 @@ class SoundPlayer {
    * @access private
    */
   playNextNote() {
-    const currentNote = this.mainMelody[this.currentItem];
+    const currentNote = this.state.mainMelody[this.state.currentItem];
 
-    //play the sound for this item
     this.synth.triggerAttackRelease(
       currentNote.note,
       currentNote.duration,
       currentNote.time,
     );
 
-    this.setState("currentItem", this.currentItem);
-
-    this.currentItem++;
-
-    if (this.currentItem === this.mainMelody.length) this.currentItem = 0;
+    const nextNote = this.state.currentItem + 1;
+    if (nextNote < this.state.mainMelody.length) {
+      this.setStateCallback("currentItem", nextNote);
+    } else {
+      this.setStateCallback("currentItem", 0);
+    }
   }
 
   /**
@@ -65,39 +79,16 @@ class SoundPlayer {
       return this.playing;
     }
     this.playNextNote();
-    const tempo = 60000 / this.tempo;
+    const tempo = 60000 / this.state.tempo;
     this.timer = setInterval(this.playNextNote.bind(this), tempo); //applyToAllNotes gets executed from Window context, bind this so that we have to instance properties.
     this.playing = true;
-    return this.playing;
   }
 
-  /**
-   * Call this to notify this component when the state of the App updates.
-   *
-   * @access public
-   *
-   * @param {*} state The new App state
-   */
   stateChanged(state) {
-    if (state.tempo) {
-      this.updateTempo(state.tempo);
-    }
-  }
-
-  /**
-   * Change the tempo.
-   *
-   * This method updates the tempo of the SoundPlayer and handles playing at new tempo.
-   *
-   * @acess public
-   *
-   * @param {*} tempo The new tempo to play at
-   */
-  updateTempo(tempo) {
-    this.tempo = tempo;
+    super.stateChanged(state);
     if (this.playing) {
       clearInterval(this.timer);
-      const tempo = 60000 / this.tempo;
+      const tempo = 60000 / this.state.tempo;
       this.timer = setInterval(this.playNextNote.bind(this), tempo);
     }
   }
