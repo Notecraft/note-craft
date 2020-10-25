@@ -23,7 +23,12 @@ let mainMelody = [
 let tempo = 0;
 let currentItem = 0;
 let setState = jest.fn();
-const soundPlayer = new SoundPlayer(toneMock, mainMelody, tempo, setState);
+const initialState = {
+  currentItem,
+  tempo,
+  mainMelody
+}
+const soundPlayer = new SoundPlayer(toneMock, initialState, setState);
 
 test("should play the next note", () => {
   soundPlayer.playNextNote();
