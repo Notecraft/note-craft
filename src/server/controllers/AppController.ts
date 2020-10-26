@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Controller, Get, ClassErrorMiddleware } from "@overnightjs/core";
 import errorHandler from "../middlewares/ErrorHandler";
-import MelodyService from "../services/melodyService";
+import MelodyService from "../services/MelodyService";
 import Settings from "../models/Settings";
 import defaultSettings from "../defaultValues";
 
