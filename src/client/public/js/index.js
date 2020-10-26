@@ -9,18 +9,18 @@ const app = new App();
 let mainMelody = [];
 const noteObjects = document.querySelectorAll(".note-item");
 noteObjects.forEach((element) => {
-    mainMelody.push({
-        note: element.innerHTML + "2",
-        duration: "8n",
-        noteObject: element,
-    });
+  mainMelody.push({
+    note: element.innerHTML + "2",
+    duration: "8n",
+    noteObject: element,
+  });
 });
 const tempo = window.localStorage.getItem("tempo");
 const initialState = {
-    tempo: tempo || "240",
-    mainMelody,
-    currentItem: 0,
-}
+  tempo: tempo || "240",
+  mainMelody,
+  currentItem: 0,
+};
 
 app.attachComponent(new SoundPlayer(Tone, initialState, app.setState));
 app.attachComponent(new MelodyBar(app.setState));
