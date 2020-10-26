@@ -10,8 +10,8 @@ import defaultSettings from "../defaultValues";
 export class AppController {
   service: MelodyService;
 
-  constructor() {
-    this.service = new MelodyService();
+  constructor(service: MelodyService) {
+    this.service = service;
   }
 
   @Get("/")

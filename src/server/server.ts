@@ -3,6 +3,7 @@ import * as path from "path";
 import { AppController } from "./controllers";
 import { Server } from "@overnightjs/core";
 import { Logger } from "@overnightjs/logger";
+import MelodyService from "./services/MelodyService";
 
 class AppServer extends Server {
   constructor() {
@@ -17,7 +18,7 @@ class AppServer extends Server {
   }
 
   private setupControllers(): void {
-    super.addControllers(new AppController());
+    super.addControllers(new AppController(new MelodyService()));
   }
 
   public start(port: number): void {
