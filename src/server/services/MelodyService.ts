@@ -1,26 +1,16 @@
 import { Scale, Mode } from "@tonaljs/tonal";
 import defaultValues from "../defaultValues";
+import Settings from "../models/Settings";
 
 class MelodyService {
-  getRandomNotes(numberOfNotes, withinRange = []) {
-    let result = [];
-    for (let item = 0; item < numberOfNotes; item++) {
-      const element =
-        withinRange[Math.floor(Math.random() * withinRange.length)];
-      result.push(element);
-    }
-
-    return result;
-  }
-
-  buildRandomResult(settings) {
+  public buildRandomResult(settings: Settings) {
     const { scale, notes, key, pattern, empty } = settings;
 
     const selectedKey = key || defaultValues.key;
     const selectedScale = scale || defaultValues.scale;
     const allScales = Mode.names();
     const baseNotes = Scale.get(selectedKey + " " + selectedScale).notes;
-    const selectedNumberOfNotes = notes || defaultValues.notes;
+    const selectedNumberOfNotes: number = notes || defaultValues.notes;
     const allEmptyModes = ["None", "Low", "High"];
     const selectedEmptyMode = empty || defaultValues.empty;
 
@@ -33,7 +23,7 @@ class MelodyService {
       baseNotes.push(" ");
     }
 
-    let randomNotes = "";
+    let randomNotes: string[] = [];
     if (pattern) {
       randomNotes = pattern.split(",");
       console.log("Woah! You already have a pattern -> " + pattern);
@@ -52,6 +42,20 @@ class MelodyService {
       allEmptyModes,
       selectedEmptyMode,
     };
+
+    return result;
+  }
+
+  private getRandomNotes(
+    numberOfNotes: number,
+    withinRange: string[] = [],
+  ): any[] {
+    let result = [];
+    for (let item = 0; item < numberOfNotes; item++) {
+      const element =
+        withinRange[Math.floor(Math.random() * withinRange.length)];
+      result.push(element);
+    }
 
     return result;
   }

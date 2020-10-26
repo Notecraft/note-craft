@@ -1,6 +1,7 @@
 import babel from "@rollup/plugin-babel";
 import localResolve from "rollup-plugin-local-resolve";
 import copy from "rollup-plugin-copy";
+import typescript from 'rollup-plugin-typescript2';
 
 const config = [
   {
@@ -11,12 +12,15 @@ const config = [
     },
   },
   {
-    input: "src/server/app.js",
+    input: "src/server/app.ts",
     output: {
       dir: "dist/server",
       format: "cjs",
     },
     plugins: [
+      typescript({
+        typescript: require('typescript')
+      }),
       localResolve(),
       babel({ babelHelpers: "runtime" }),
       copy({
