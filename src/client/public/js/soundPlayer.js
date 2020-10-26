@@ -26,14 +26,14 @@ class SoundPlayer extends Component {
       ui: {
         playButton: document.getElementById("play-button"),
       },
-      setStateCallback
+      setStateCallback,
     });
     this.timer = 0;
     this.playing = false;
     this.synth = new Tone.Synth({
       oscillator: {
         count: 4,
-      }
+      },
     }).toDestination();
   }
 

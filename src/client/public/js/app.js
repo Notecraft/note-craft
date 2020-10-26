@@ -46,7 +46,7 @@ class App {
 
   /**
    * A list of child components that will be updated on state change
-   * 
+   *
    * @type {Component[]}
    */
   components = [];
@@ -57,12 +57,12 @@ class App {
    * @constructor
    * @constructs App
    */
-  constructor() { }
+  constructor() {}
 
   /**
    * Add a component to the list of child components
-   * 
-   * @param {Component} component 
+   *
+   * @param {Component} component
    */
   attachComponent(component) {
     this.components.push(component);
@@ -117,7 +117,7 @@ class App {
     this.ui.selectedKey.onchange = this.setUrlQueryParam("key").bind(this);
     this.ui.selectedScale.onchange = this.setUrlQueryParam("scale").bind(this);
 
-    this.components.forEach(component => {
+    this.components.forEach((component) => {
       if (component.bindUI) {
         component.bindUI();
       }
@@ -199,7 +199,7 @@ class App {
   setState = (name, value) => {
     this.state[name] = value;
     this.stateChanged();
-  }
+  };
 
   /**
    * Notifies various components that the state has changed and they should re-renders UI.
@@ -208,7 +208,7 @@ class App {
    *
    */
   stateChanged() {
-    this.components.forEach(component => {
+    this.components.forEach((component) => {
       if (component.stateChanged) {
         component.stateChanged(this.state);
       }

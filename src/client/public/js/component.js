@@ -4,21 +4,21 @@
 export default class Component {
   /**
    * The state of the component, used to determine a rerender.
-   * 
+   *
    * @access private
    */
   state = {};
 
   /**
    * A list of elements that are on the page associated with this component
-   * 
+   *
    * @access private
    */
   ui = {};
 
   /**
    * The App setState callback to change the state and notify other components.
-   * 
+   *
    * @access private
    */
   setStateCallback = null;
@@ -26,8 +26,8 @@ export default class Component {
   /**
    * @constructor
    * @constructs Component
-   * 
-   * @param {*} state The initial state of this component 
+   *
+   * @param {*} state The initial state of this component
    */
   constructor({ state, ui, setStateCallback }) {
     this.setStateCallback = setStateCallback;
@@ -37,10 +37,10 @@ export default class Component {
 
   /**
    * Overwrite this method to bind event handlers to ui elements
-   * 
+   *
    * @access public
    */
-  bindUI() { }
+  bindUI() {}
 
   /**
    * Call this to notify this component when the state of the App updates.
@@ -66,7 +66,7 @@ export default class Component {
 
   /**
    * This method causes the custom render to be called.
-   * 
+   *
    * @param {*} shouldRerender Determines if a rerender should occur.
    */
   rerender(shouldRerender) {
@@ -77,8 +77,8 @@ export default class Component {
 
   /**
    * Overwrite this method to add custom ui element changes.
-   * 
+   *
    * @access public
    */
-  render() { }
+  render() {}
 }
