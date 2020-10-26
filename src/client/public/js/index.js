@@ -24,7 +24,7 @@ const initialState = {
 
 app.attachComponent(new SoundPlayer(Tone, initialState, app.setState.bind(app)));
 app.attachComponent(new MelodyBar(app.setState.bind(app)));
-app.attachComponent(new TempoControls(initialState.tempo, app.setState.bind(app)));
+app.attachComponent(new TempoControls(initialState, app.setState.bind(app)));
 
 /*Start the App*/
 app.init(initialState);

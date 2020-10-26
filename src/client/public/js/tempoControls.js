@@ -2,10 +2,10 @@ import Component from "./component"
 
 export default class TempoControls extends Component {
 
-    constructor(tempo, setStateCallback) {
+    constructor(initialState, setStateCallback) {
         super({
             state: {
-                tempo: tempo || "240"
+                tempo: initialState.tempo
             },
             ui: {
                 tempoSlider: document.getElementById("tempo-range"),
