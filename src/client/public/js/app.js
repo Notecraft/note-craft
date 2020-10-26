@@ -196,7 +196,7 @@ class App {
    * @param {*} name The name of the state key to change.
    * @param {*} value The new value to change the state to.
    */
-  setState(name, value) {
+  setState = (name, value) => {
     this.state[name] = value;
     this.stateChanged();
   }

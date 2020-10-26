@@ -22,9 +22,9 @@ const initialState = {
     currentItem: 0,
 }
 
-app.attachComponent(new SoundPlayer(Tone, initialState, app.setState.bind(app)));
-app.attachComponent(new MelodyBar(app.setState.bind(app)));
-app.attachComponent(new TempoControls(initialState, app.setState.bind(app)));
+app.attachComponent(new SoundPlayer(Tone, initialState, app.setState));
+app.attachComponent(new MelodyBar(app.setState));
+app.attachComponent(new TempoControls(initialState, app.setState));
 
 /*Start the App*/
 app.init(initialState);
