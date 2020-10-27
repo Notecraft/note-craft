@@ -12,15 +12,33 @@ describe("AppController", () => {
 
   beforeAll(() => {
     serviceMock = {
-      buildRandomResult: (settings: Settings) => {
-        patterns: ["A", "F", "G"];
-      },
+      buildRandomResult: (settings: Settings) => ({
+        pattern: ["A", "F", "G"],
+        selectedScale: "lydian",
+        selectedKey: "C",
+        selectedNumberOfNotes: 8,
+        keys: ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab"],
+        allNotes: ["C", "D", "E", "F#", "G", "A", "B"],
+        allScales: [
+          "ionian",
+          "dorian",
+          "phrygian",
+          "lydian",
+          "mixolydian",
+          "aeolian",
+          "locrian",
+        ],
+        allEmptyModes: ["None", "Low", "High"],
+        selectedEmptyMode: "None",
+      }),
     };
     controller = new AppController(serviceMock);
     server = new AppServer([controller]);
   });
 
-  it("should return index page render", () => {
-    request(server.app).get("/").expect(200);
+  it("should return index page render", async () => {
+    const response = await request(server.app).get("/");
+
+    expect(response.status).toBe(200);
   });
 });
