@@ -1,5 +1,9 @@
+import { AppController } from "./controllers";
 import AppServer from "./server";
+import ToneMelodyService from "./services/ToneMelodyService";
+
 const port: number = Number(process.env.PORT);
 
-const server = new AppServer();
+const appController = new AppController(new ToneMelodyService());
+const server = new AppServer([appController]);
 server.start(port);

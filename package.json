@@ -36,6 +36,9 @@
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.8",
     "@types/http-errors": "^1.8.0",
+    "@types/jest": "^26.0.15",
+    "@types/supertest": "^2.0.10",
+    "babel-jest": "^26.6.1",
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.12.0",
     "jest": "^26.5.0",
@@ -44,6 +47,8 @@
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-local-resolve": "^1.0.7",
     "rollup-plugin-typescript2": "^0.28.0",
+    "supertest": "^5.0.0",
+    "ts-jest": "^26.4.3",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
   }

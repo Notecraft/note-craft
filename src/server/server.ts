@@ -4,9 +4,10 @@ import { AppController } from "./controllers";
 import { Server } from "@overnightjs/core";
 import { Logger } from "@overnightjs/logger";
 import MelodyService from "./services/MelodyService";
+import { Controller } from "@overnightjs/core/lib/decorators/types";
 
 class AppServer extends Server {
-  constructor() {
+  constructor(controllers: any[]) {
     super(true);
     this.app.set("views", path.join(__dirname, "../client/views"));
     this.app.set("view engine", "pug");
@@ -14,11 +15,11 @@ class AppServer extends Server {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(express.static(path.join(__dirname, "../client/public")));
-    this.setupControllers();
+    this.setupControllers(controllers);
   }
 
-  private setupControllers(): void {
-    super.addControllers(new AppController(new MelodyService()));
+  private setupControllers(controllers: any[]): void {
+    super.addControllers(controllers);
   }
 
   public start(port: number): void {
