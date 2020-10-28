@@ -1,10 +1,7 @@
 import * as express from "express";
 import * as path from "path";
-import { AppController } from "./controllers";
 import { Server } from "@overnightjs/core";
 import { Logger } from "@overnightjs/logger";
-import MelodyService from "./services/MelodyService";
-import { Controller } from "@overnightjs/core/lib/decorators/types";
 
 class AppServer extends Server {
   constructor(controllers: any[]) {
