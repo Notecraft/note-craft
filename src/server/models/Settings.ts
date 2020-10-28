@@ -1,9 +1,14 @@
-export default interface Settings {
-  key?: string;
-  scale?: string;
-  tempo?: string;
-  notes?: number;
-  empty?: string;
-  keys?: string[];
-  pattern?: string;
+export interface Settings {
+  selectedKey: string;
+  selectedScale: string;
+  selectedNumberOfNotes: number;
+  selectedTempo: number;
+  selectedEmptyMode: EmptyMode;
+  pattern: string[];
+}
+
+export enum EmptyMode {
+  None,
+  Low,
+  High,
 }

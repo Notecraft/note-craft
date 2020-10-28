@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import errorHandler from "../../../src/server/middlewares/ErrorHandler";
 
 describe("ErrorHandler", () => {
