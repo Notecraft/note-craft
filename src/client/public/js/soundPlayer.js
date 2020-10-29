@@ -1,21 +1,6 @@
 import Component from "./component";
 
-/**
- * This class plays notes.
- *
- * This class uses Tone js to play a sequence of notes at a given tempo and notify
- * via callback what the current playing note is.
- */
 class SoundPlayer extends Component {
-  /**
-   * SoundPlayer constructor
-   *
-   * @constructs SoundPlayer
-   *
-   * @param {Tone} Tone The Tone js instance.
-   * @param {*} initialState The initialState from the App
-   * @param {Function} setStateCallback The callback to change the App state.
-   */
   constructor(Tone, initialState, setStateCallback) {
     super({
       state: {
@@ -44,11 +29,6 @@ class SoundPlayer extends Component {
     });
   }
 
-  /**
-   * Plays the sound for the next note.
-   *
-   * @access private
-   */
   playNextNote() {
     const currentNote = this.state.mainMelody[this.state.currentItem];
 
@@ -66,11 +46,6 @@ class SoundPlayer extends Component {
     }
   }
 
-  /**
-   * Start playing the notes in the mainMelody at the tempo.
-   *
-   * @access public
-   */
   async play() {
     await Tone.start();
     if (this.playing) {
