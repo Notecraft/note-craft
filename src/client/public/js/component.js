@@ -11,10 +11,9 @@ export default class Component {
     this._state = state;
   }
 
-  bindUI() {}
+  bindUI() { }
 
   stateChanged(state) {
-    console.log({ state });
     let updated = false;
     for (const key in state) {
       if (key in this._state) {
@@ -24,11 +23,10 @@ export default class Component {
         }
       }
     }
-    console.log({ updated });
     if (updated) {
       this._render();
     }
   }
 
-  _render() {}
+  _render() { }
 }

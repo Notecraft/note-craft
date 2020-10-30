@@ -14,7 +14,6 @@ class MelodyBar extends Component {
   }
 
   _render() {
-    console.log("render");
     this._ui.noteObjects[this._ui.noteObjects.length - 1].classList.remove(
       "playing",
     );
