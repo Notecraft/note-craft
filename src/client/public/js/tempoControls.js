@@ -33,7 +33,6 @@ export default class TempoControls extends Component {
    * @param {*} event The event from the UI.
    */
   tempoOnChange(event) {
-    console.log(event.target.id);
     let tempo;
     if (event.target.id === "tempo-range") {
       tempo = this.ui.tempoSlider.value;
