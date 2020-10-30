@@ -15,8 +15,6 @@ describe("Melody bar component", () => {
   });
 
   it("should highlight the current playing note", () => {
-    melodyBar.render();
-
     pattern.forEach((note, index) => {
       melodyBar.stateChanged({ currentItem: index });
       const playingElement = document.querySelector(".playing");

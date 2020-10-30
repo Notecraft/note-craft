@@ -1,38 +1,34 @@
 export default class Component {
-  state = {};
+  _state = {};
 
-  ui = {};
+  _ui = {};
 
-  setStateCallback = null;
+  _setStateCallback = null;
 
   constructor({ state, ui, setStateCallback }) {
-    this.setStateCallback = setStateCallback;
-    this.ui = ui;
-    this.state = state;
+    this._setStateCallback = setStateCallback;
+    this._ui = ui;
+    this._state = state;
   }
 
   bindUI() {}
 
   stateChanged(state) {
+    console.log({ state });
     let updated = false;
     for (const key in state) {
-      if (key in this.state) {
-        if (this.state[key] !== state[key]) {
-          this.state[key] = state[key];
+      if (key in this._state) {
+        if (this._state[key] !== state[key]) {
+          this._state[key] = state[key];
           updated = true;
         }
       }
     }
+    console.log({ updated });
     if (updated) {
-      this.rerender(updated);
+      this._render();
     }
   }
 
-  rerender(shouldRerender) {
-    if (shouldRerender) {
-      this.render();
-    }
-  }
-
-  render() {}
+  _render() {}
 }

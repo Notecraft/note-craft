@@ -4,7 +4,7 @@ class MelodyBar extends Component {
   constructor(setStateCallback) {
     super({
       state: {
-        currentItem: 0,
+        currentItem: -1,
       },
       ui: {
         noteObjects: document.querySelectorAll(".note-item"),
@@ -13,13 +13,14 @@ class MelodyBar extends Component {
     });
   }
 
-  render() {
-    this.ui.noteObjects[this.ui.noteObjects.length - 1].classList.remove(
+  _render() {
+    console.log("render");
+    this._ui.noteObjects[this._ui.noteObjects.length - 1].classList.remove(
       "playing",
     );
-    this.ui.noteObjects[this.state.currentItem].classList.add("playing");
-    if (this.state.currentItem > 0) {
-      this.ui.noteObjects[this.state.currentItem - 1].classList.remove(
+    this._ui.noteObjects[this._state.currentItem].classList.add("playing");
+    if (this._state.currentItem > 0) {
+      this._ui.noteObjects[this._state.currentItem - 1].classList.remove(
         "playing",
       );
     }
