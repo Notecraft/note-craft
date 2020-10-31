@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "set PORT=8000 && npm run build && node ./dist/server/app.js",
-    "dev": "nodemon ./src/server/app.js",
+    "dev": "nodemon --watch ./src --ext js,pug,ts,css --exec npm run start",
     "build": "rollup --config",
     "test": "jest",
     "lint": "prettier --write \"**/*.js\" \"**/*.pug\""
