@@ -7,22 +7,17 @@ class MelodyBar extends Component {
         currentItem: -1,
       },
       ui: {
-        noteObjects: document.querySelectorAll(".note-item"),
+        noteObjects: document.querySelectorAll("[id='.note-display-']"),
       },
       setStateCallback,
     });
   }
 
   _render() {
-    this._ui.noteObjects[this._ui.noteObjects.length - 1].classList.remove(
-      "playing",
-    );
-    this._ui.noteObjects[this._state.currentItem].classList.add("playing");
-    if (this._state.currentItem > 0) {
-      this._ui.noteObjects[this._state.currentItem - 1].classList.remove(
-        "playing",
-      );
-    }
+    const lastPlaying = document.querySelector(".playing");
+    if (lastPlaying) lastPlaying.classList.remove("playing");
+    const nextPlaying = document.querySelector(".note-display-" + this._state.currentItem);
+    if (nextPlaying) nextPlaying.classList.add("playing");
   }
 }
 

@@ -1,0 +1,21 @@
+#current-pattern.hidden #{pattern.toString()}
+table.u-full-width
+  colgroup
+    col
+    each item, index in pattern
+      col(class='note-display-' + index)
+  thead
+    tr
+      th
+      each item in pattern
+        th
+          .note-item #{item}
+  each note in allNotes
+    tr
+      td #{note}
+      each item, index in pattern
+        td
+          if item == note
+            div #{item}
+          else
+            div

@@ -28,7 +28,7 @@
   font-size: 12px;
 }
 
-.note-item.playing {
+.playing {
   background-color: #00b7ff;
   color: white;
   text-decoration: underline;
