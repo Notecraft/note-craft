@@ -13,41 +13,34 @@ export default class TempoControls extends Component {
       setStateCallback,
     });
 
-    this.ui.tempoSlider.value = this.state.tempo;
-    this.ui.tempoTextbox.value = this.state.tempo;
+    this._ui.tempoSlider.value = this._state.tempo;
+    this._ui.tempoTextbox.value = this._state.tempo;
   }
 
   bindUI() {
-    this.ui.tempoSlider.onchange = this.tempoOnChange.bind(this);
-    this.ui.tempoTextbox.onchange = this.tempoOnChange.bind(this);
-    this.ui.tempoTextbox.onkeypress = this.tempoOnChange.bind(this);
-    this.ui.tempoTextbox.onpaste = this.tempoOnChange.bind(this);
-    this.ui.tempoTextbox.oninput = this.tempoOnChange.bind(this);
+    this._ui.tempoSlider.onchange = this._tempoOnChange.bind(this);
+    this._ui.tempoTextbox.onchange = this._tempoOnChange.bind(this);
+    this._ui.tempoTextbox.onkeypress = this._tempoOnChange.bind(this);
+    this._ui.tempoTextbox.onpaste = this._tempoOnChange.bind(this);
+    this._ui.tempoTextbox.oninput = this._tempoOnChange.bind(this);
   }
 
-  /**
-   * Update the tempo state from a UI change.
-   *
-   * @access private
-   *
-   * @param {*} event The event from the UI.
-   */
-  tempoOnChange(event) {
+  _tempoOnChange(event) {
     let tempo;
     if (event.target.id === "tempo-range") {
-      tempo = this.ui.tempoSlider.value;
+      tempo = this._ui.tempoSlider.value;
     }
 
     if (event.target.id === "tempo-text") {
-      tempo = this.ui.tempoTextbox.value;
+      tempo = this._ui.tempoTextbox.value;
     }
 
     window.localStorage.setItem("tempo", tempo);
-    this.setStateCallback("tempo", tempo);
+    this._setStateCallback("tempo", tempo);
   }
 
-  render() {
-    this.ui.tempoSlider.value = this.state.tempo;
-    this.ui.tempoTextbox.value = this.state.tempo;
+  _render() {
+    this._ui.tempoSlider.value = this._state.tempo;
+    this._ui.tempoTextbox.value = this._state.tempo;
   }
 }

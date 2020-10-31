@@ -11,8 +11,6 @@ describe("Tempo controls component", () => {
   });
 
   it("should display the current tempo on the inputs", () => {
-    tempoControls.render();
-
     const tempoInputBox = document.getElementById("tempo-text");
     const tempoRangeSlider = document.getElementById("tempo-range");
     expect(tempoInputBox.value).toEqual(tempo.toString());

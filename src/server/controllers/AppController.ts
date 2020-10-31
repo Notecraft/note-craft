@@ -17,21 +17,29 @@ export class AppController {
 
   @Get("/")
   private getMelodyAppPage(req: Request, res: Response) {
+    const selectedKey =
+      (req.query.key as string) ?? defaultSettings.selectedKey;
+    const selectedScale =
+      (req.query.scale as string) ?? defaultSettings.selectedScale;
+    const selectedNumberOfNotes = (req.query.notes as string)
+      ? Number(req.query.notes)
+      : defaultSettings.selectedNumberOfNotes;
+    const selectedEmptyMode = req.query.empty
+      ? EmptyMode[req.query.empty as keyof typeof EmptyMode]
+      : defaultSettings.selectedEmptyMode;
+    const pattern = (req.query.pattern as string)
+      ? (req.query.pattern as string).split(",")
+      : null;
+
     const settings: Settings = {
-      selectedKey: (req.query.key as string) ?? defaultSettings.selectedKey,
-      selectedScale:
-        (req.query.scale as string) ?? defaultSettings.selectedScale,
-      selectedNumberOfNotes: (req.query.notes as string)
-        ? Number(req.query.notes)
-        : defaultSettings.selectedNumberOfNotes,
+      selectedKey,
+      selectedScale,
+      selectedNumberOfNotes,
       selectedTempo: defaultSettings.selectedTempo,
-      selectedEmptyMode: req.query.empty
-        ? EmptyMode[req.query.empty as keyof typeof EmptyMode]
-        : defaultSettings.selectedEmptyMode,
-      pattern: (req.query.pattern as string)
-        ? (req.query.pattern as string).split(",")
-        : null,
+      selectedEmptyMode,
+      pattern,
     };
+
     const melody: Melody = this.service.buildRandomResult(settings);
 
     const appDetails = {
