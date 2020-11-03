@@ -16,7 +16,9 @@ class MelodyBar extends Component {
   _render() {
     const lastPlaying = document.querySelector(".playing");
     if (lastPlaying) lastPlaying.classList.remove("playing");
-    const nextPlaying = document.querySelector(".note-display-" + this._state.currentItem);
+    const nextPlaying = document.querySelector(
+      ".note-display-" + this._state.currentItem,
+    );
     if (nextPlaying) nextPlaying.classList.add("playing");
   }
 }

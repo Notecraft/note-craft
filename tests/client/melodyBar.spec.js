@@ -4,8 +4,11 @@ describe("Melody bar component", () => {
   const pattern = ["A", "B", "C"];
   document.body.innerHTML = `<div class='note-container'>
             ${pattern
-      .map((note, index) => "<div class='note-display-" + index + "'>" + note + "</div>")
-      .join("")}
+              .map(
+                (note, index) =>
+                  "<div class='note-display-" + index + "'>" + note + "</div>",
+              )
+              .join("")}
         </div>`;
 
   const mockCallback = jest.fn();
@@ -17,7 +20,9 @@ describe("Melody bar component", () => {
   it("should highlight the current playing note", () => {
     pattern.forEach((note, index) => {
       melodyBar.stateChanged({ currentItem: index });
-      const shouldBePlayingElement = document.querySelector(".playing.note-display-" + index);
+      const shouldBePlayingElement = document.querySelector(
+        ".playing.note-display-" + index,
+      );
       expect(shouldBePlayingElement).not.toBeNull();
     });
   });
