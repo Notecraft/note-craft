@@ -66,9 +66,22 @@ describe("ToneMelodyService", () => {
       ],
       allEmptyModes: ["None", "Low", "High"],
     };
-    expect(result.allNotes).toEqual(expectedResult.allNotes);
-    expect(result.allScales).toEqual(expectedResult.allScales);
-    expect(result.allEmptyModes).toEqual(expectedResult.allEmptyModes);
-    expect(result.pattern).toEqual(expectedResult.pattern);
+    expect(result).toEqual(expectedResult);
+  });
+
+  it("should add blank notes in pattern but not in allNotes returned", () => {
+    const settings: Settings = {
+      selectedEmptyMode: EmptyMode.High,
+      selectedKey: "C",
+      selectedNumberOfNotes: 8,
+      selectedTempo: 240,
+      selectedScale: "lydian",
+      pattern: null,
+    };
+
+    const result = service.buildRandomResult(settings);
+
+    expect(result.pattern).toContain(" ");
+    expect(result.allNotes).not.toContain(" ");
   });
 });

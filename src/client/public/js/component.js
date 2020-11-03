@@ -11,7 +11,7 @@ export default class Component {
     this._state = state;
   }
 
-  bindUI() { }
+  bindUI() {}
 
   stateChanged(state) {
     let updated = false;
@@ -28,5 +28,5 @@ export default class Component {
     }
   }
 
-  _render() { }
+  _render() {}
 }

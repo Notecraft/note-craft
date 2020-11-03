@@ -17,15 +17,6 @@ class ToneMelodyService implements MelodyService {
     const allScales = Mode.names();
     const allNotes = Scale.get(selectedKey + " " + selectedScale).notes;
 
-    if (selectedEmptyMode === EmptyMode.Low) {
-      allNotes.push(" ");
-    }
-
-    if (selectedEmptyMode === EmptyMode.High) {
-      allNotes.push(" ");
-      allNotes.push(" ");
-    }
-
     if (pattern) {
       console.log("Woah! You already have a pattern -> " + pattern);
       return {
@@ -39,6 +30,7 @@ class ToneMelodyService implements MelodyService {
     const randomNotes: string[] = this.getRandomNotes(
       selectedNumberOfNotes,
       allNotes,
+      selectedEmptyMode,
     );
 
     return {
@@ -52,7 +44,8 @@ class ToneMelodyService implements MelodyService {
   private getRandomNotes(
     numberOfNotes: number,
     withinRange: string[] = [],
-  ): any[] {
+    selectedEmptyMode: EmptyMode,
+  ): string[] {
     let result = [];
     for (let item = 0; item < numberOfNotes; item++) {
       const element =
@@ -60,7 +53,38 @@ class ToneMelodyService implements MelodyService {
       result.push(element);
     }
 
+    if (selectedEmptyMode === EmptyMode.Low) {
+      result.pop();
+      result.push(" ");
+      result = this.shuffle(result);
+    }
+
+    if (selectedEmptyMode === EmptyMode.High) {
+      result.pop();
+      result.pop();
+      result.push(" ");
+      result.push(" ");
+      result = this.shuffle(result);
+    }
+
     return result;
+  }
+
+  private shuffle(array: string[]): string[] {
+    var currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
   }
 }
 
