@@ -21,11 +21,18 @@
 
 .note-item {
   max-width: 20px;
-  border: 1px solid #00b7ff;
-  border-radius: 25px;
   text-align: center;
   padding: 4px;
   font-size: 12px;
+}
+
+.note-bar {
+  background-color: yellow;
+}
+
+.note-grid {
+  table-layout: fixed;
+  width: 100%;
 }
 
 .playing {

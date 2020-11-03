@@ -1,5 +1,5 @@
 #current-pattern.hidden #{pattern.toString()}
-table.u-full-width
+table.note-grid
   colgroup
     col
     each item, index in pattern
@@ -14,8 +14,7 @@ table.u-full-width
     tr
       td #{note}
       each item, index in pattern
-        td
-          if item == note
-            div #{item}
-          else
-            div
+        if item == note
+          td.note-bar
+        else
+          td
