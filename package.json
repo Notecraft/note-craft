@@ -23,7 +23,7 @@
     "morgan": "~1.9.0",
     "node-fetch": "^2.6.1",
     "prettier": "^2.1.2",
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "tone": "^14.7.39"
   },
   "devDependencies": {
