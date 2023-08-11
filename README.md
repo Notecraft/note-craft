@@ -18,4 +18,7 @@ https://notecraft.herokuapp.com/
 
 # What's coming next?
 
+There's lots to get going here. 
+Chief of which would be getting an early version of this up on Vercel. 
+
 https://github.com/goatonabicycle/note-craft/projects/1
